@@ -1,14 +1,18 @@
-document.addEventListener("click", function (event) {
-    let mouse = document.getElementById("mouse");
-    mouse.style.left = event.clientX + "px";
-    mouse.style.top = event.clientY + "px";
-});
+const images = [
+    'src/img1.svg',
+    'src/img2.svg',
+    'src/img3.svg',
+    'src/img4.svg',
+    'src/img5.svg'
+];
 
-function resizeMouse() {
-    let mouse = document.getElementById("mouse");
-    let size = Math.min(window.innerWidth, window.innerHeight) * 0.25; // 25% de la plus petite dimension
-    mouse.style.width = size + "px";
+function getRandomImage() {
+    return images[Math.floor(Math.random() * images.length)];
 }
 
-window.addEventListener("resize", resizeMouse);
-resizeMouse(); // Appelle la fonction au chargement
+function changeImages() {
+    document.getElementById('image1').src = getRandomImage();
+    document.getElementById('image2').src = getRandomImage();
+}
+
+changeImages(); // Initialisation

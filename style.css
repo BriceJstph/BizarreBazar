@@ -1,22 +1,22 @@
 body {
-    background-color: #2a2a2a;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     flex-direction: column;
-    position: relative;
-    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #a1caff;
+    cursor: pointer;
     margin: 0;
 }
-
-#mouse {
-    position: absolute;
-    width: 25vw; /* 25% de la largeur de la fenêtre */
-    height: auto; /* Conserver le ratio de l'image */
-    max-height: 25vh; /* Limite la hauteur à 25% de la hauteur de la fenêtre */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: top 0.5s, left 0.5s;
+.image-container {
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }

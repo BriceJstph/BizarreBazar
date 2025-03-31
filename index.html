@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mouse Mover</title>
+    <title>BizarreBazar</title>
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
     <script>
@@ -13,8 +13,13 @@
         }
     </script>
 </head>
-<body>
-    <img id="mouse" src="src/mouse.svg" alt="Souris">
+<body onclick="changeImages()">
+    <div class="image-container">
+        <img id="image1" src="src/img1.svg" alt="Image 1">
+    </div>
+    <div class="image-container">
+        <img id="image2" src="src/img2.svg" alt="Image 2">
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
