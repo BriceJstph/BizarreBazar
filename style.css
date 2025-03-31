@@ -1,0 +1,22 @@
+body {
+    background-color: #2a2a2a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+}
+
+#mouse {
+    position: absolute;
+    width: 25vw; /* 25% de la largeur de la fenêtre */
+    height: auto; /* Conserver le ratio de l'image */
+    max-height: 25vh; /* Limite la hauteur à 25% de la hauteur de la fenêtre */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: top 0.5s, left 0.5s;
+}
