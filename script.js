@@ -6,13 +6,22 @@ const images = [
     'src/img5.svg'
 ];
 
-function getRandomImage() {
-    return images[Math.floor(Math.random() * images.length)];
-}
+function changeImageColor() {
 
-function changeImages() {
-    document.getElementById('image1').src = getRandomImage();
-    document.getElementById('image2').src = getRandomImage();
-}
+    let obj = document.getElementById("mouse1");
 
-changeImages(); // Initialisation
+    // Vérifier si le document est chargé
+    obj.addEventListener("load", function() {
+        let svgDoc = obj.contentDocument; // Récupérer le document SVG interne
+        console.log(svgDoc);
+        let shape_list = svgDoc.querySelectorAll(".colored-shape"); // Sélectionner l'élément à modifier
+
+        for(let i = 0; i < shape_list.length; i++){
+            if (shape_list[i]) {
+                shape_list[i].setAttribute("fill", "green"); // Changer la couleur de remplissage
+            }
+        }
+    });
+}   
+
+changeImageColor(); // Initialisation
