@@ -6,22 +6,35 @@ const images = [
     'src/img5.svg'
 ];
 
-function changeImageColor() {
+const colors = [
+    "green",
+    "purple",
+    "orange",
+    "yellow",
+    "gray"
+]
 
+function getRandomColor() {
+    return colors[Math.floor(Math.random()*5)];
+}
+
+function changeImageColor(){
     let obj = document.getElementById("mouse1");
+    let new_color = getRandomColor();
 
-    // Vérifier si le document est chargé
-    obj.addEventListener("load", function() {
-        let svgDoc = obj.contentDocument; // Récupérer le document SVG interne
-        console.log(svgDoc);
-        let shape_list = svgDoc.querySelectorAll(".colored-shape"); // Sélectionner l'élément à modifier
+    let svgDoc = obj.contentDocument; // Récupérer le document SVG interne
+    let shape_list = svgDoc.querySelectorAll(".colored-shape"); // Sélectionner l'élément à modifier
 
-        for(let i = 0; i < shape_list.length; i++){
-            if (shape_list[i]) {
-                shape_list[i].setAttribute("fill", "green"); // Changer la couleur de remplissage
-            }
+    for(let i = 0; i < shape_list.length; i++){
+        if (shape_list[i]) {
+            shape_list[i].setAttribute("fill", new_color); // Changer la couleur de remplissage
         }
-    });
-}   
+    }
+}
 
-changeImageColor(); // Initialisation
+document.addEventListener("click", changeImageColor);
+
+document.getElementById("mouse1").addEventListener("load", function() {
+    let svgDoc = this.contentDocument; // Accède au contenu du SVG
+    svgDoc.addEventListener("click", changeImageColor);
+});
