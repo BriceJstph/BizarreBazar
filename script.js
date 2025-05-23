@@ -1,40 +1,35 @@
-const images = [
-    'src/img1.svg',
-    'src/img2.svg',
-    'src/img3.svg',
-    'src/img4.svg',
-    'src/img5.svg'
-];
 
 const colors = [
+    "white",
+    "gray",
+    "red",
     "green",
-    "purple",
-    "orange",
-    "yellow",
-    "gray"
+    "blue"
 ]
 
-function getRandomColor() {
-    return colors[Math.floor(Math.random()*5)];
+const objects = [
+    "Fantome",
+    "Souris",
+    "Fauteuil",
+    "Bouteille",
+    "Livre"
+]
+
+function randomizeTextAndColor() {
+    console.log("Changing color and text...");
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    const randomObject = objects[Math.floor(Math.random() * objects.length)];
+
+    document.getElementById("pA").textContent = randomObject;
+    document.getElementById("pA").style.color = randomColor;
+
+    // Pour pB, on peut choisir un autre objet et une autre couleur, ou les mêmes si tu préfères
+    const randomColorB = colors[Math.floor(Math.random() * colors.length)];
+    const randomObjectB = objects[Math.floor(Math.random() * objects.length)];
+
+    document.getElementById("pB").textContent = randomObjectB;
+    document.getElementById("pB").style.color = randomColorB;
 }
 
-function changeImageColor(){
-    let obj = document.getElementById("mouse1");
-    let new_color = getRandomColor();
+document.addEventListener("click", randomizeTextAndColor);
 
-    let svgDoc = obj.contentDocument; // Récupérer le document SVG interne
-    let shape_list = svgDoc.querySelectorAll(".colored-shape"); // Sélectionner l'élément à modifier
-
-    for(let i = 0; i < shape_list.length; i++){
-        if (shape_list[i]) {
-            shape_list[i].setAttribute("fill", new_color); // Changer la couleur de remplissage
-        }
-    }
-}
-
-document.addEventListener("click", changeImageColor);
-
-document.getElementById("mouse1").addEventListener("load", function() {
-    let svgDoc = this.contentDocument; // Accède au contenu du SVG
-    svgDoc.addEventListener("click", changeImageColor);
-});

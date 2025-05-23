@@ -1,5 +1,5 @@
 # BizarreBazar
-Implementation of the famous game as a PWA
+Implementation in text format of the famous game as a PWA
 
 
 ## Hosting the App Locally

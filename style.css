@@ -1,23 +1,21 @@
 body {
+    background-color: #525252;
+    min-height: 100vh;
+    margin: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #a1caff;
-    cursor: pointer;
-    margin: 0;
+    justify-content: center; /* centre verticalement */
+    align-items: stretch;    /* les enfants prennent toute la largeur */
 }
-.image-container {
-    width: 100%;
-    height: 50vh;
+
+#pA, #pB {
+    flex: 1;                /* occupe tout l’espace disponible */
     display: flex;
-    align-items: center;
-    justify-content: center;
-}
-img {
+    justify-content: center; /* centre horizontalement le texte */
+    align-items: center;     /* centre verticalement le texte */
+    font-size: clamp(2rem, 10vw, 8rem);
+    margin: 0;
     width: 100%;
-    height: 100%;
-    object-fit: contain;
-    pointer-events: auto;
+    height: 50%;
+    text-align: center;
 }
