@@ -1,18 +1,4 @@
-const images = [
-    'src/img1.svg',
-    'src/img2.svg',
-    'src/img3.svg',
-    'src/img4.svg',
-    'src/img5.svg'
-];
 
-const colors = [
-    "green",
-    "purple",
-    "orange",
-    "yellow",
-    "gray"
-]
 
 function getRandomColor() {
     return colors[Math.floor(Math.random()*5)];
@@ -33,8 +19,3 @@ function changeImageColor(){
 }
 
 document.addEventListener("click", changeImageColor);
-
-document.getElementById("mouse1").addEventListener("load", function() {
-    let svgDoc = this.contentDocument; // Accède au contenu du SVG
-    svgDoc.addEventListener("click", changeImageColor);
-});
