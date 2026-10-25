@@ -9,14 +9,11 @@ function randomizeImagePositions() {
         const width = image.clientWidth;
         const height = image.clientHeight;
         const rotation = Math.random() * 360;
-        const radians = rotation * Math.PI / 180;
-        const rotatedWidth = Math.abs(width * Math.cos(radians)) + Math.abs(height * Math.sin(radians));
-        const rotatedHeight = Math.abs(width * Math.sin(radians)) + Math.abs(height * Math.cos(radians));
-        const left = Math.random() * Math.max(0, pageWidth - rotatedWidth);
-        const top = Math.random() * Math.max(0, pageHeight - rotatedHeight);
+        const left = `${Math.random() * Math.max(0, pageWidth - width)}px`;
+        const top = `${Math.random() * Math.max(0, pageHeight - height)}px`;
 
-        image.style.left = `${left + (rotatedWidth - width) / 2}px`;
-        image.style.top = `${top + (rotatedHeight - height) / 2}px`;
+        image.style.left = left;
+        image.style.top = top;
         image.style.transform = `rotate(${rotation}deg)`;
     });
 }
