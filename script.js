@@ -1,10 +1,16 @@
-const imgPath = "src/exports/";
+const imgPath = "img/exports/";
 const objectNameList = ["ghost","mouse","chair","book","bottle"];
 const probabilityOfGoodObject = 0.3;
+
+const audioTick = new Audio("audio/tick.mp3");
+
 
 const htmlImages = document.querySelectorAll("img");
 const pageWidth = document.documentElement.clientWidth;
 const pageHeight = document.documentElement.clientHeight;
+
+//Fonction sleep, use like this : await sleep(200);
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 function hideImages() {
     htmlImages.forEach((image) => {
@@ -41,7 +47,20 @@ function getRandomInTab(tab) {
     return element;
 }
 
-function refreshImages(){
+async function tickingSounds(){
+    for (let i = 0; i < 3; i++) {
+        try {
+            //audioTick.currentTime = 0;
+            await audioTick.play();
+        } catch (error) {
+            return;
+        }
+        if (i < 2)
+            await sleep(300);
+    }
+}
+
+async function refreshImages(){
     hideImages();
 
     indices = [0,1,2,3,4];
@@ -78,6 +97,9 @@ function refreshImages(){
         toGrab = objectNameList[secondShapeId];
     console.log(`Grab the ${toGrab} !`);
 
+    
+    await tickingSounds();
+
     //console.log(`${falseFilename1} ${falseFilename2} ${indices}`);
     randomizeImagePositions();
 
@@ -92,5 +114,3 @@ document.addEventListener("keydown", (event) => {
         refreshImages();
     }
 });
-
-refreshImages()
