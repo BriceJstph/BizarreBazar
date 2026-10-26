@@ -18,3 +18,17 @@ body {
     object-fit: contain;
     visibility: hidden;
 }
+
+.tap-to-play {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50vw;
+    transform: translate(-50%, -50%);
+    color: #5e5f03;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9vw;
+    text-align: center;
+    white-space: nowrap;
+    z-index: 1;
+}

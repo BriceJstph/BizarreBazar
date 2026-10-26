@@ -8,6 +8,7 @@ const audioTick = new Audio("audio/tick.mp3");
 const htmlImages = document.querySelectorAll("img");
 const pageWidth = document.documentElement.clientWidth;
 const pageHeight = document.documentElement.clientHeight;
+const tapToPlay = document.querySelector(".tap-to-play");
 
 //Fonction sleep, use like this : await sleep(200);
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -61,6 +62,7 @@ async function tickingSounds(){
 }
 
 async function refreshImages(){
+    tapToPlay.remove();
     hideImages();
 
     indices = [0,1,2,3,4];
