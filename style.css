@@ -13,6 +13,6 @@ body {
 
 .random-image {
     position: absolute;
-    width: min(25vw, 25vh);
+    width: min(30vw, 30vh);
     height: auto;
 }
