@@ -10,8 +10,7 @@ const pageWidth = document.documentElement.clientWidth;
 const pageHeight = document.documentElement.clientHeight;
 const tapToPlay = document.querySelector(".tap-to-play");
 
-//Fonction sleep, use like this : await sleep(200);
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+canChange = true;
 
 function hideImages() {
     htmlImages.forEach((image) => {
@@ -48,21 +47,17 @@ function getRandomInTab(tab) {
     return element;
 }
 
-async function tickingSounds(){
-    for (let i = 0; i < 3; i++) {
-        try {
-            //audioTick.currentTime = 0;
-            await audioTick.play();
-        } catch (error) {
-            return;
-        }
-        if (i < 2)
-            await sleep(300);
-    }
+function playTheTick(){
+    audioTick.play();
 }
 
-async function refreshImages(){
+function refreshImages(){
+    if (!canChange)
+        return;
+
     tapToPlay.remove();
+    canChange = false;
+
     hideImages();
 
     indices = [0,1,2,3,4];
@@ -99,17 +94,18 @@ async function refreshImages(){
         toGrab = objectNameList[secondShapeId];
     console.log(`Grab the ${toGrab} !`);
 
-    
-    await tickingSounds();
-
-    //console.log(`${falseFilename1} ${falseFilename2} ${indices}`);
     randomizeImagePositions();
 
-    showImages();
+    playTheTick()
+    setTimeout(playTheTick,300);
+    setTimeout(playTheTick,600);
+    setTimeout(showImages,900);
+    setTimeout(() => {canChange = true},900);
+
+    //console.log(`${falseFilename1} ${falseFilename2} ${indices}`);
 }
 
 
-//window.addEventListener("load", refreshImages);
 document.addEventListener("click", refreshImages);
 document.addEventListener("keydown", (event) => {
     if (event.code === "Space") {
