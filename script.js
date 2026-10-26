@@ -6,11 +6,9 @@ const audioTick = new Audio("audio/tick.mp3");
 
 
 const htmlImages = document.querySelectorAll("img");
-const pageWidth = document.documentElement.clientWidth;
-const pageHeight = document.documentElement.clientHeight;
 const tapToPlay = document.querySelector(".tap-to-play");
 
-canChange = true;
+let canChange = true;
 
 function hideImages() {
     htmlImages.forEach((image) => {
@@ -25,6 +23,8 @@ function showImages() {
 }
 
 function randomizeImagePositions() {
+    const pageWidth = document.documentElement.clientWidth;
+    const pageHeight = document.documentElement.clientHeight;
 
     htmlImages.forEach((image) => {
         const width = image.clientWidth;
@@ -47,8 +47,15 @@ function getRandomInTab(tab) {
     return element;
 }
 
-function playTheTick(){
-    audioTick.play();
+function playTheTick() {
+    audioTick.currentTime = 0;
+
+    const playPromise = audioTick.play();
+    if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+            console.error("Unable to play tick audio:", error);
+        });
+    }
 }
 
 function refreshImages(){
@@ -60,15 +67,16 @@ function refreshImages(){
 
     hideImages();
 
-    indices = [0,1,2,3,4];
+    let indices = [0,1,2,3,4];
 
     //First, select a false couple
-    falseShapeId = getRandomInTab(indices);
-    falseColorId = getRandomInTab(indices);
+    let falseShapeId = getRandomInTab(indices);
+    let falseColorId = getRandomInTab(indices);
     const falseFilename1 = `${imgPath}${objectNameList[falseShapeId]}${falseColorId}.png`;
 
     //Select the second couple, two cases
-    secondShapeId = getRandomInTab(indices);
+    let secondShapeId = getRandomInTab(indices);
+    let secondColorId = -1;
     if (Math.random() < probabilityOfGoodObject){
         //Good Object
         secondColorId = secondShapeId;
@@ -87,7 +95,7 @@ function refreshImages(){
         htmlImages[1].src = falseFilename1;
     }
 
-    toGrab = "";
+    let toGrab = "";
     if (indices.length==1)
         toGrab = objectNameList[indices[0]];
     else
@@ -99,8 +107,8 @@ function refreshImages(){
     playTheTick()
     setTimeout(playTheTick,300);
     setTimeout(playTheTick,600);
-    setTimeout(showImages,900);
-    setTimeout(() => {canChange = true},900);
+    setTimeout(showImages,600);
+    setTimeout(() => {canChange = true},600);
 
     //console.log(`${falseFilename1} ${falseFilename2} ${indices}`);
 }

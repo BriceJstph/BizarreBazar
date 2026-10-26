@@ -13,8 +13,8 @@ body {
 
 .random-image {
     position: absolute;
-    width: min(40vw, 40vh);
-    height: min(40vw, 40vh);
+    width: min(49vw, 49vh);
+    height: min(49vw, 49vh);
     object-fit: contain;
     visibility: hidden;
 }
