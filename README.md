@@ -6,7 +6,7 @@ Implementation of the famous game.
 
 - White Ghost ffffffff
 - Grey Mouse 808080ff
-- Red Sit e51a1aff
+- Red Chair e51a1aff
 - Blue Book 0069f3ff
 - Green Bottle 00b200ff
 

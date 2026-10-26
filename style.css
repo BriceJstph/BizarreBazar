@@ -16,4 +16,5 @@ body {
     width: min(30vw, 30vh);
     height: min(30vw, 30vh);
     object-fit: contain;
+    visibility: hidden;
 }

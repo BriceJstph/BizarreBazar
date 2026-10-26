@@ -2,13 +2,25 @@ const imgPath = "src/exports/";
 const objectNameList = ["ghost","mouse","chair","book","bottle"];
 const probabilityOfGoodObject = 0.3;
 
+const htmlImages = document.querySelectorAll("img");
+const pageWidth = document.documentElement.clientWidth;
+const pageHeight = document.documentElement.clientHeight;
+
+function hideImages() {
+    htmlImages.forEach((image) => {
+        image.style.visibility = "hidden";
+    });
+}
+
+function showImages() {
+    htmlImages.forEach((image) => {
+        image.style.visibility = "visible";
+    });
+}
 
 function randomizeImagePositions() {
-    const images = document.querySelectorAll(".random-image");
-    const pageWidth = document.documentElement.clientWidth;
-    const pageHeight = document.documentElement.clientHeight;
 
-    images.forEach((image) => {
+    htmlImages.forEach((image) => {
         const width = image.clientWidth;
         const height = image.clientHeight;
         const rotation = Math.random() * 360;
@@ -21,14 +33,6 @@ function randomizeImagePositions() {
     });
 }
 
-function setSecondImageToChair() {
-    const secondImage = document.querySelectorAll("img")[1];
-
-    if (secondImage) {
-        secondImage.src = "src/exports/chair0.png";
-    }
-}
-
 // Remove and return a random element from tab parameter
 function getRandomInTab(tab) {
     const element = tab[Math.floor(Math.random() * tab.length)];
@@ -38,6 +42,8 @@ function getRandomInTab(tab) {
 }
 
 function refreshImages(){
+    hideImages();
+
     indices = [0,1,2,3,4];
 
     //First, select a false couple
@@ -57,7 +63,6 @@ function refreshImages(){
     const falseFilename2 = `${imgPath}${objectNameList[secondShapeId]}${secondColorId}.png`;
 
     //Randomize front/back placement
-    const htmlImages = document.querySelectorAll("img");
     if (Math.random() < 0.5){
         htmlImages[0].src = falseFilename1;
         htmlImages[1].src = falseFilename2;
@@ -68,6 +73,8 @@ function refreshImages(){
 
     console.log(`${falseFilename1} ${falseFilename2} ${indices}`);
     randomizeImagePositions();
+
+    showImages();
 }
 
 
