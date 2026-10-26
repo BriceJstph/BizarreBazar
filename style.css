@@ -14,5 +14,6 @@ body {
 .random-image {
     position: absolute;
     width: min(30vw, 30vh);
-    height: auto;
+    height: min(30vw, 30vh);
+    object-fit: contain;
 }
