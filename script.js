@@ -71,14 +71,26 @@ function refreshImages(){
         htmlImages[1].src = falseFilename1;
     }
 
-    console.log(`${falseFilename1} ${falseFilename2} ${indices}`);
+    toGrab = "";
+    if (indices.length==1)
+        toGrab = objectNameList[indices[0]];
+    else
+        toGrab = objectNameList[secondShapeId];
+    console.log(`Grab the ${toGrab} !`);
+
+    //console.log(`${falseFilename1} ${falseFilename2} ${indices}`);
     randomizeImagePositions();
 
     showImages();
 }
 
 
-window.addEventListener("load", refreshImages);
+//window.addEventListener("load", refreshImages);
 document.addEventListener("click", refreshImages);
+document.addEventListener("keydown", (event) => {
+    if (event.code === "Space") {
+        refreshImages();
+    }
+});
 
 refreshImages()
